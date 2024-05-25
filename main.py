@@ -6,11 +6,11 @@ from fastapi.staticfiles import StaticFiles
 from starlette.responses import HTMLResponse
 
 app = FastAPI()
+# app.mount("/static", StaticFiles(directory="static"), name="static")
 app.mount("/static", StaticFiles(directory="static"), name="static")
-
 templates = Jinja2Templates(directory="templates")
 
-app = FastAPI()
+
 
 
 @app.get("/", response_class=HTMLResponse)
