@@ -1,0 +1,41 @@
+{% for item in channels_data %}
+<!--begin::Item-->
+<div class="d-flex flex-stack">
+    <!--begin::Wrapper-->
+    <div class="d-flex align-items-center me-3">
+        <!--begin::Icon-->
+        <img src="{{ url_for('static', path=item.icon) }}" class="me-3 w-30px" alt="">
+        <!--end::Icon-->
+
+        <!--begin::Section-->
+        <div class="flex-grow-1">
+            <a href="#" class="text-gray-800 text-hover-primary fs-5 fw-bold lh-0">{{ item.title }}</a>
+            <span class="text-gray-500 fw-semibold d-block fs-6">{{ item.description }}</span>
+        </div>
+        <!--end::Section-->
+    </div>
+    <!--end::Wrapper-->
+
+    <!--begin::Statistics-->
+    <div class="d-flex align-items-center w-100 mw-125px">
+        <!--begin::Progress-->
+        <div class="progress h-6px w-100 me-2 bg-light-success">
+            <div class="progress-bar bg-success" role="progressbar" style="width: {{ item.progress_percentage }}%"
+                 aria-valuenow="{{ item.progress_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <!--end::Progress-->
+
+        <!--begin::Value-->
+        <span class="text-gray-500 fw-semibold">
+            {{ item.progress_percentage }}%
+        </span>
+        <!--end::Value-->
+    </div>
+    <!--end::Statistics-->
+</div>
+<!--end::Item-->
+
+<!--begin::Separator-->
+<div class="separator separator-dashed my-4"></div>
+<!--end::Separator-->
+{% endfor %}
