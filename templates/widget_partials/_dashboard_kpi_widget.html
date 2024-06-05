@@ -1,0 +1,59 @@
+{% for category, details in kpi_widget_categories.items() %}
+
+            <!--begin::Row-->
+                {% for kpi in details.KPIs %}
+                    <!--begin::Col-->
+                    <div class="col-md-6 col-xl-6 mb-xxl-10">
+                        <!--begin::Card widget 8-->
+                        <div class="card card-flush mb-xl-10">
+                            <!--begin::Header-->
+                            <div class="card-header pt-5">
+                                <!--begin::Title-->
+                                <div class="card-title d-flex flex-column">
+                                       <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">{{category}}</span>
+                                    <!--begin::Info-->
+                                    <div class="d-flex align-items-center">
+                                        <!--begin::Amount-->
+
+
+                                        <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">{{ kpi.data.six_months.value }}</span>
+                                        <!--end::Amount-->
+                                        <!--begin::Badge-->
+                                        <span class="badge badge-light-danger fs-base">
+                                            <i class="ki-duotone ki-arrow-down fs-5 text-danger ms-n1">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>{{ kpi.data.six_months.percentage }}</span>
+                                        <!--end::Badge-->
+                                    </div>
+                                    <!--end::Info-->
+                                    <!--begin::Subtitle-->
+                                    <span class="text-gray-500 pt-1 fw-semibold fs-6">{{ kpi.title }}</span>
+                                    <div id="kt_card_widget_8_chart" class="min-h-auto" style="height: 125px"></div>
+                                    <!--end::Subtitle-->
+                                </div>
+                                <!--end::Title-->
+                            </div>
+                            <!--end::Header-->
+                            <!--begin::Card body-->
+                            <div class="card-body d-flex align-items-end pt-0">
+                                <!--begin::Progress-->
+                                <div class="d-flex align-items-center flex-column mt-3 w-100">
+                                    <div class="d-flex justify-content-between w-100 mt-auto mb-2">
+                                        <span class="fw-bolder fs-6 text-gray-900">{{ kpi.data.two_years.value }} to Goal</span>
+                                        <span class="fw-bold fs-6 text-gray-500">{{ kpi.data.two_years.percentage }}</span>
+                                    </div>
+                                    <div class="h-8px mx-3 w-100 bg-light-success rounded">
+                                        <div class="bg-success rounded h-8px" role="progressbar" style="width: {{ kpi.data.two_years.percentage }};"
+                                            aria-valuenow="{{ kpi.data.two_years.percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <!--end::Progress-->
+                            </div>
+                            <!--end::Card body-->
+                        </div>
+                        <!--end::Card widget 8-->
+                    </div>
+                {% endfor %}
+
+    {% endfor %}

@@ -1,0 +1,55 @@
+
+        <div class="card card-flush h-xl-100">
+            <!--begin::Header-->
+            <div class="card-header pt-7 mb-5">
+                <!--begin::Title-->
+                <h3 class="card-title align-items-start flex-column">
+                    <span class="card-label fw-bold text-gray-800">Prospects</span>
+                    <span class="text-gray-500 mt-1 fw-semibold fs-6"></span>
+                </h3>
+                <!--end::Title-->
+            </div>
+            <!--end::Header-->
+            <!--begin::Body-->
+            <div class="card-body pt-0">
+                <!--begin::Items-->
+                <div class="m-0">
+                    <!--begin::Item-->
+                    {% for prospect in prospects_widget_data %}
+                    <div class="d-flex flex-stack mb-3">
+                        <!--begin::Profile Picture or Icon-->
+                        <div class="me-4 w-25px" style="border-radius: 4px; background-color: #f0f0f0;"></div>
+                        <!--end::Profile Picture or Icon-->
+                        <!--begin::Section-->
+                        <div class="d-flex flex-stack flex-row-fluid d-grid gap-2">
+                            <!--begin::Content-->
+                            <div class="me-5">
+                                <!--begin::Title-->
+                                <a href="#" class="text-gray-800 fw-bold text-hover-primary fs-6">{{ prospect.name }}</a>
+                                <!--end::Title-->
+                                <!--begin::Desc-->
+                                <span class="text-gray-500 fw-semibold fs-7 d-block text-start ps-0">{{ prospect.reason }}</span>
+                                <!--end::Desc-->
+                            </div>
+                            <!--end::Content-->
+                            <!--begin::Info-->
+                            <div class="d-flex align-items-center">
+                                <!--begin::Rank-->
+                                <span class="text-gray-800 fw-bold fs-6 me-3 d-block">Rank: #{{ prospect.rank }}</span>
+                                <!--end::Rank-->
+                            </div>
+                            <!--end::Info-->
+                        </div>
+                        <!--end::Section-->
+                    </div>
+                    <!--end::Item-->
+                    <!--begin::Separator-->
+                    <div class="separator separator-dashed my-3"></div>
+                    <!--end::Separator-->
+                    {% endfor %}
+                </div>
+                <!--end::Items-->
+            </div>
+            <!--end::Body-->
+        </div>
+

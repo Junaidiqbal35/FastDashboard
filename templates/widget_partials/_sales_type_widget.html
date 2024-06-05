@@ -1,0 +1,48 @@
+<div class="card card-flush h-lg-100">
+    <!--begin::Header-->
+    <div class="card-header pt-5 mb-7">
+        <!--begin::Title-->
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bold text-gray-900">Sales Type</span>
+            <span class="text-gray-500 mt-1 fw-semibold fs-6">Sales overview by type</span>
+        </h3>
+        <!--end::Title-->
+    </div>
+    <!--end::Header-->
+    <!--begin::Body-->
+    <div class="card-body pt-0">
+        <!--begin::Items-->
+        {% for sale in sales_data %}
+        <div class="d-flex flex-stack mb-5">
+            <!--begin::Section-->
+            <div class="d-flex align-items-center me-3">
+                <!--begin::Icon-->
+                <div class="me-3 w-30px" style="border-radius: 4px; background-color: #f0f0f0;"></div>
+                <!--end::Icon-->
+                <!--begin::Section-->
+                <div class="flex-grow-1">
+                    <a href="#" class="text-gray-800 text-hover-primary fs-5 fw-bold lh-0">{{ sale.type }}</a>
+                    <span class="text-gray-500 fw-semibold d-block fs-6">{{ sale.amount }}</span>
+                </div>
+                <!--end::Section-->
+            </div>
+            <!--end::Section-->
+            <!--begin::Statistics-->
+            <div class="d-flex align-items-center w-100 mw-125px">
+                <!--begin::Progress-->
+                <div class="progress h-6px w-100 me-2 bg-light-success">
+                     <div class="bg-success rounded h-8px" role="progressbar" style="width: {{ sale.percentage }};"
+                                            aria-valuenow="{{ sale.percentage }}" aria-valuemin="0" aria-valuemax="100">
+
+                     </div>
+
+                </div>
+                <!-- end::Progress-->
+                <!--begin::Value-->
+                <span class="text-gray-500 fw-semibold">{{ sale.percentage }}%</span>
+                <!--end::Value-->
+            </div>
+            <!--end::Statistics-->
+        </div>
+        {% endfor %}
+

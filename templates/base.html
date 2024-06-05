@@ -41,13 +41,14 @@
 <!--begin::Global Javascript Bundle(mandatory for all pages)-->
 <script src="static/plugins/global/plugins.bundle.js"></script>
 <script src="static/js/scripts.bundle.js"></script>
+	<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
 <!--end::Global Javascript Bundle-->
 <!--begin::Custom Javascript(used for this page only)-->
 <script src="static/js/widgets.bundle.js"></script>
 <script src="static/js/custom/widgets.js"></script>
 <script src="https://unpkg.com/htmx.org"></script>
 <!--end::Custom Javascript-->
-{% block scripts %}{% endblock %}
+{% block extrascript %} {% endblock extrascript %}
 <!--end::Javascript-->
 </body>
 <!--end::Body-->

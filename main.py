@@ -10,50 +10,154 @@ templates = Jinja2Templates(directory="templates")
 
 
 @app.get("/", response_class=HTMLResponse)
-async def root(request: Request):
+async def dashboard(request: Request):
     context = {
         "request": request,
     }
-    return templates.TemplateResponse("index.html", context)
+    return templates.TemplateResponse("dashboard.html", context)
 
 
-@app.get("/sales/widget", response_class=HTMLResponse)
-async def sales_by_countries_widget(request: Request):
-    data = [
-        {"country": "United States", "visits": 9763, "increase": "2.6%", "flag": "media/flags/united-states.svg"},
-        {"country": "Canada", "visits": 8500, "increase": "3.1%", "flag": "media/flags/canada.svg"},
-        {"country": "Germany", "visits": 9600, "increase": "1.8%", "flag": "media/flags/germany.svg"}
-    ]
-
-    if request.headers.get("HX-Request"):
-        return templates.TemplateResponse("widget_partials/_sales_by_countries.html",
-                                          {"request": request, "visits": data})
-
-
-@app.get("/channels/widget", response_class=HTMLResponse)
-async def channels_widget(request: Request):
-    data = [
+@app.get("/widgets/data/without-graph", response_class=HTMLResponse)
+async def widgets_data_view(request: Request):
+    widgets_data_without_graph = [
         {
-            "icon": "media/svg/brand-logos/dribbble-icon-1.svg",
-            "title": "Dribbble",
-            "description": "Community",
-            "progress_percentage": 65
+            "id": 1,
+            "title": "Holding Days",
+            "value": 365,
+            "percentage": "12%",
+            "average": "480 day average",
+            "trend": "down"
         },
         {
-            "icon": "media/svg/brand-logos/slack-icon.svg",
-            "title": "Slack",
-            "description": "Community",
-            "progress_percentage": 80
-        },
-
-        {
-            "icon": "media/svg/brand-logos/google-icon.svg",
-            "title": "Google",
-            "description": "Community",
-            "progress_percentage": 90
+            "id": 2,
+            "title": "Retail Price",
+            "value": "$23k",
+            "percentage": "22%",
+            "average": "$32K average Price",
+            "trend": "up"
         }
+    ]
 
+    if request.headers.get("HX-Request"):
+        return templates.TemplateResponse("widget_partials/_dashboard_widget_without_graph.html",
+                                          {"request": request,
+                                           "widgets_data_without_graph": widgets_data_without_graph})
+
+
+@app.get("/widget/data/graph", response_class=HTMLResponse)
+async def read_graph(request: Request):
+    widget_data_with_line_graph = [
+        {
+            "id": 1,
+            "type": "data",
+            "title": "Category Web Views",
+            "value": "300",
+            "percentage": "8%",
+            "trend": "up",
+            "line_graph_data": {
+                "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+                "data": [100, 120, 130, 150, 200, 250, 300]
+            }
+        },
+        {
+            "id": 2,
+            "type": "data",
+            "title": "Category Sales",
+            "value": "$238k",
+            "percentage": "3%",
+            "trend": "down",
+            "line_graph_data": {
+                "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+                "data": [220, 230, 210, 200, 198, 190, 238]
+            }
+        }
+    ]
+
+    if request.headers.get("HX-Request"):
+        return templates.TemplateResponse("widget_partials/_dashboard_widget_with_graph.html",
+                                          {"request": request,
+                                           "widgets_data_with_graph": widget_data_with_line_graph})
+
+
+@app.get("/kpi-widget-data", response_class=HTMLResponse)
+async def kpi_widget_categories_data(request: Request):
+    kpi_widget_categories = {
+        "Tea Pots Category": {
+            "KPIs": [
+                {
+                    "title": "Current Qty Available",
+                    "data": {
+                        "six_months": {
+                            "value": 453,
+                            "percentage": "23%"
+                        },
+                        "two_years": {
+                            "value": 453,
+                            "percentage": "23%"
+                        }
+                    }
+                },
+                {
+                    "title": "Qty on Website",
+                    "data": {
+                        "six_months": {
+                            "value": 153,
+                            "percentage": "13%"
+                        },
+                        "two_years": {
+                            "value": 153,
+                            "percentage": "13%"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+    if request.headers.get("HX-Request"):
+        return templates.TemplateResponse("widget_partials/_dashboard_kpi_widget.html",
+                                          {"request": request,
+                                           "kpi_widget_categories": kpi_widget_categories})
+
+
+@app.get("/widget/prospects", response_class=HTMLResponse)
+async def prospects_widget(request: Request):
+    prospects_widget_data = [
+        {
+            "name": "John Doe",
+            "reason": "Interested in product demo",
+            "rank": 1
+        },
+        {
+            "name": "Jane Smith",
+            "reason": "Requested a quote",
+            "rank": 2
+        },
+        {
+            "name": "Samuel Brown",
+            "reason": "Follow-up meeting scheduled",
+            "rank": 3
+        },
+        {
+            "name": "Lucy Gray",
+            "reason": "Downloaded whitepaper",
+            "rank": 4
+        }
     ]
     if request.headers.get("HX-Request"):
-        return templates.TemplateResponse("widget_partials/_channel_widget.html",
-                                          {"request": request, "channels_data": data})
+        return templates.TemplateResponse("widget_partials/_prospect_widget.html",
+                                          {"request": request,
+                                           "prospects_widget_data": prospects_widget_data})
+
+
+@app.get("/widget/sales-type", response_class=HTMLResponse)
+async def sales_widget(request: Request):
+    sales_data = [
+        {"type": "Retail", "amount": "$353k", "percentage": "76%"},
+        {"type": "Trade", "amount": "$6k", "percentage": "21%"},
+        {"type": "Distributor", "amount": "$500", "percentage": "8%"}
+    ]
+    if request.headers.get("HX-Request"):
+        return templates.TemplateResponse(
+            "widget_partials/_sales_type_widget.html",
+            {"request": request, "sales_data": sales_data}
+        )
