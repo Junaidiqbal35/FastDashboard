@@ -56,7 +56,7 @@ async def read_graph(request: Request):
             "trend": "up",
             "line_graph_data": {
                 "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-                "data": [100, 120, 130, 150, 200, 250, 300]
+                "data": [100, 120, 130, 150, 200, 250, 50]
             }
         },
         {
@@ -68,7 +68,7 @@ async def read_graph(request: Request):
             "trend": "down",
             "line_graph_data": {
                 "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-                "data": [220, 230, 210, 200, 198, 190, 238]
+                "data": [220, 230, 50, 200, 198, 190, 238]
             }
         }
     ]
