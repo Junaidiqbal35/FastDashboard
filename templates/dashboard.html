@@ -3,19 +3,24 @@
 
   <!-- widget without graph -->
           <!--begin::Row-->
-        <div class="row g-5 g-xl-10" hx-get="/widgets/data/without-graph" hx-trigger="load" hx-target="#sales_widget_without_graph" hx-swap="innerHTML">
-             <!--begin::Col-->
-            <div class="col-xxl-6 mb-md-5 mb-xl-10" id = "sales_widget_without_graph">
-            </div>
-            <!-- end:Col -->
-        </div>
+          <div class="col-xxl-6 mb-md-5 mb-xl-10">
+
+                <div class="row g-5 g-xl-10" hx-get="/widgets/data/without-graph" hx-trigger="load" hx-target="#sales_widget_without_graph" hx-swap="innerHTML">
+                     <!--begin::Col-->
+                    <div  id = "sales_widget_without_graph">
+                    </div>
+                    <!-- end:Col -->
+                </div>
+          </div>
         <!-- end::Row -->
-         <div class="row g-5 g-xl-10" hx-get="/widget/data/graph" hx-trigger="load" hx-target="#sales_widget_with_graph" hx-swap="innerHTML">
-             <!--begin::Col-->
-            <div class="col-xxl-6 mb-md-5 mb-xl-10" id = "sales_widget_with_graph">
+          <div class="col-xxl-6 mb-md-5 mb-xl-10">
+             <div class="row g-5 g-xl-10" hx-get="/widget/data/graph" hx-trigger="load" hx-target="#sales_widget_with_graph" hx-swap="innerHTML">
+                 <!--begin::Col-->
+                <div  id = "sales_widget_with_graph">
+                </div>
+                <!-- end:Col -->
             </div>
-            <!-- end:Col -->
-        </div>
+          </div>
 
       <!-- KPI widget -->
 
@@ -34,30 +39,72 @@
 
 
 
+
+
        <!--- begin:: prospect widget --->
-       <div class="row g-5 g-xl-10" hx-get="/widget/prospects" hx-trigger="load" hx-target="#prospect-widget" hx-swap="innerHTML">
-        <!--begin::Col-->
-            <div class="col-xl-4 mb-xl-10" id="prospect-widget">
-            </div>
-       </div>
+     <div class="col-xxl-6 mb-md-5 mb-xl-10">
+           <div class="row g-5 g-xl-10" hx-get="/widget/prospects" hx-trigger="load" hx-target="#prospect-widget" hx-swap="innerHTML">
+            <!--begin::Col-->
+                <div  id="prospect-widget">
+                </div>
+           </div>
+     </div>
        <!--  End :: Prospect widget Row --->
 
       <!--- begin:: Sales type Widget -->
             <!-- being:: Row -->
-          <div class="row gy-5 g-xl-10" hx-get="/widget/sales-type" hx-trigger="load" hx-target="#sales-widget" hx-swap="innerHTML">
-                <!-- being:: Col -->
-              <div class="col-xl-4 mb-xl-10" id="sales-widget">
-                 <!-- loading data using htmx, partial template will load inside this div -->
+          <div class="col-xxl-6 mb-md-5 mb-xl-10">
+                <div class="row gy-5 g-xl-10" hx-get="/widget/sales-type" hx-trigger="load" hx-target="#sales-widget" hx-swap="innerHTML">
+                    <!-- being:: Col -->
+                  <div  id="sales-widget">
+                     <!-- loading data using htmx, partial template will load inside this div -->
+                  </div>
               </div>
                 <!-- end:: Col -->
-
-
 
           </div>
              <!-- end:: Row -->
        <!-- end :: Row Sales type widget -->
+      <!-- sales purchase graph widget -->
+    <div class="col-xxl-6 mb-md-5 mb-xl-10">
+          <!--begin::Row-->
+            <div class="row g-5 g-xl-10" hx-get="/widget/sales-purchase" hx-trigger="load" hx-target="#sales_purchase_widget_data" hx-swap="innerHTML">
+            <!--begin::Col-->
+                <div id="sales_purchase_widget_data">
+                    <!-- loading data using htmx, partial template will load inside this div -->
+                </div>
+            <!-- end ::Col-->
+            </div>
+      </div>
+    <!-- end sales purchase graph widget-->
 
+    <!-- sales by countries widget -->
+    <div class="col-xxl-6 mb-md-5 mb-xl-10">
+          <!--begin::Row-->
+            <div class="row g-5 g-xl-10" hx-get="/widget/countries-sales-data" hx-trigger="load" hx-target="#countries_sales" hx-swap="innerHTML">
+            <!--begin::Col-->
+                <div id="countries_sales">
+                    <!-- loading data using htmx, partial template will load inside this div -->
+                </div>
+            <!-- end ::Col-->
+            </div>
+      </div>
+    <!-- end countries widget -->
 
+     <!-- quantity widget -->
+    <div class="col-xxl-6 mb-md-5 mb-xl-10">
+          <!--begin::Row-->
+            <div class="row g-5 g-xl-10" hx-get="/widget/location-quantity-widget" hx-trigger="load" hx-target="#location_quantity_widget_container" hx-swap="innerHTML">
+            <!--begin::Col-->
+
+                      <!--begin::Col-->
+                <div id="location_quantity_widget_container">
+                    <!-- loading data using htmx, partial template will load inside this div -->
+                </div>
+            <!-- end ::Col-->
+            </div>
+      </div>
+        <!-- end quantity widget -->
 
 
 

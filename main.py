@@ -144,7 +144,7 @@ async def prospects_widget(request: Request):
         }
     ]
     if request.headers.get("HX-Request"):
-        return templates.TemplateResponse("widget_partials/_prospect_widget.html",
+        return templates.TemplateResponse("widget_partials/_dashboard_prospect_widget.html",
                                           {"request": request,
                                            "prospects_widget_data": prospects_widget_data})
 
@@ -158,6 +158,81 @@ async def sales_widget(request: Request):
     ]
     if request.headers.get("HX-Request"):
         return templates.TemplateResponse(
-            "widget_partials/_sales_type_widget.html",
+            "widget_partials/_dashboard_sales_type_widget.html",
             {"request": request, "sales_data": sales_data}
         )
+
+
+# Sample sale data
+@app.get("/widget/sales-purchase", response_class=HTMLResponse)
+async def sales_purchase_widget(request: Request):
+    sales_purchase_data = [
+        {"month": "Jan", "sale": 100, "purchase": 50},
+        {"month": "Feb", "sale": 200, "purchase": 150},
+        {"month": "Mar", "sale": 50, "purchase": 100},
+        {"month": "Apr", "sale": 160, "purchase": 200},
+        {"month": "May", "sale": 250, "purchase": 180},
+        {"month": "June", "sale": 105, "purchase": 200},
+        {"month": "July", "sale": 200, "purchase": 500},
+        {"month": "August", "sale": 650, "purchase": 50},
+    ]
+    if request.headers.get("HX-Request"):
+        return templates.TemplateResponse("widget_partials/_dashboard_sales_purchase_widget.html",
+                                          {"request": request, "sales_purchase_data": sales_purchase_data}
+                                          )
+
+
+@app.get("/widget/countries-sales-data", response_class=HTMLResponse)
+async def countries_sales_widget(request: Request):
+    countries_sales_data = [
+        {"country": "USA", "month": "Jan", "income": 10000},
+        {"country": "USA", "month": "Feb", "income": 12000},
+        {"country": "USA", "month": "Mar", "income": 9000},
+        {"country": "USA", "month": "Apr", "income": 15000},
+        {"country": "USA", "month": "May", "income": 16000},
+        {"country": "USA", "month": "Jun", "income": 17000},
+        {"country": "Canada", "month": "Jan", "income": 8000},
+        {"country": "Canada", "month": "Feb", "income": 9000},
+        {"country": "Canada", "month": "Mar", "income": 8500},
+        {"country": "Canada", "month": "Apr", "income": 11000},
+        {"country": "Canada", "month": "May", "income": 10500},
+        {"country": "Canada", "month": "Jun", "income": 11500},
+        {"country": "UK", "month": "Jan", "income": 7000},
+        {"country": "UK", "month": "Feb", "income": 7500},
+        {"country": "UK", "month": "Mar", "income": 8000},
+        {"country": "UK", "month": "Apr", "income": 9500},
+        {"country": "UK", "month": "May", "income": 10000},
+        {"country": "UK", "month": "Jun", "income": 11000},
+        {"country": "Germany", "month": "Jan", "income": 6000},
+        {"country": "Germany", "month": "Feb", "income": 6500},
+        {"country": "Germany", "month": "Mar", "income": 7000},
+        {"country": "Germany", "month": "Apr", "income": 8500},
+        {"country": "Germany", "month": "May", "income": 9000},
+        {"country": "Germany", "month": "Jun", "income": 9500},
+        {"country": "France", "month": "Jan", "income": 5000},
+        {"country": "France", "month": "Feb", "income": 5500},
+        {"country": "France", "month": "Mar", "income": 6000},
+        {"country": "France", "month": "Apr", "income": 7500},
+        {"country": "France", "month": "May", "income": 8000},
+        {"country": "France", "month": "Jun", "income": 8500},
+    ]
+
+    if request.headers.get("HX-Request"):
+        return templates.TemplateResponse("widget_partials/_dashboard_countries_sales_widget.html",
+                                          {"request": request, "countries_sales_data": countries_sales_data}
+                                          )
+
+
+@app.get("/widget/location-quantity-widget", response_class=HTMLResponse)
+async def location_quantity_widget(request: Request):
+    quantity_by_location_data = [
+        {"location": "America", "quantity": 100},
+        {"location": "France ", "quantity": 200},
+        {"location": "Canada", "quantity": 300},
+        {"location": "Uk", "quantity": 400},
+    ]
+
+    if request.headers.get("HX-Request"):
+
+        return templates.TemplateResponse("widget_partials/_dashboard_location_quantity_widget.html",
+                                          {"request": request, "quantity_by_location_data": quantity_by_location_data})
